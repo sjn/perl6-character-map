@@ -1,0 +1,66 @@
+#!/usr/bin/env perl6
+
+use v6.c;
+use GTK::Simple;
+
+
+
+my %unicode-chars =
+  "«" => { texas => '<<',  remarks => 'as part of «» or .«' },
+  "»" => { texas => '>>',  remarks => 'as part of «» or .»' },
+  "×" => { texas => '*' },
+  "÷" => { texas => '/' },
+  "−" => { texas => '-' },
+  "∘" => { texas => 'o' },
+  "≅" => { texas => '=~=' },
+  "π" => { texas => 'pi',  remarks => '3.14159_26535_89793_238e0' },
+  "τ" => { texas => 'tau', remarks => '6.28318_53071_79586_476e0' },
+  "𝑒" => { texas => 'e',   remarks => '2.71828_18284_59045_235e0' },
+  "∞" => { texas => 'Inf' },
+  "…" => { texas => '...' },
+  "‘" => { texas => "'",   remarks => "as part of ‘’ or ‚’ or ’‘" },
+  "’" => { texas => "'",   remarks => "as part of ’‘ or ’’" },
+  "‚" => { texas => "'",   remarks => "as part of ‚‘ or ‚’" },
+  '“' => { texas => '"',   remarks => 'as part of “” or „” or ”“' },
+  '”' => { texas => '"',   remarks => 'as part of ”“ or ””' },
+  '„' => { texas => '"',   remarks => 'as part of „“ or „”' },
+  "｢" => { texas => 'Q//', remarks => 'as part of ｢｣' },
+  "｣" => { texas => 'Q//', remarks => 'as part of ｢｣' },
+  "⁺" => { texas => '+ (must use explicit number)', remarks =>     'as part of exponentiation' },
+  "⁻" => { texas => '- (must use explicit number)', remarks =>     'as part of exponentiation' },
+  "¯" => { texas => '- (must use explicit number)', remarks =>     'as part of exponentiation (macron is an alternative way of writing a minus)' },
+  "⁰" => { texas => '**0', remarks => 'can be combined with ⁰..⁹' },
+  "¹" => { texas => '**1', remarks => 'can be combined with ⁰..⁹' },
+  "²" => { texas => '**2', remarks => 'can be combined with ⁰..⁹' },
+  "³" => { texas => '**3', remarks => 'can be combined with ⁰..⁹' },
+  "⁴" => { texas => '**4', remarks => 'can be combined with ⁰..⁹' },
+  "⁵" => { texas => '**5', remarks => 'can be combined with ⁰..⁹' },
+  "⁶" => { texas => '**6', remarks => 'can be combined with ⁰..⁹' },
+  "⁷" => { texas => '**7', remarks => 'can be combined with ⁰..⁹' },
+  "⁸" => { texas => '**8', remarks => 'can be combined with ⁰..⁹' },
+  "⁹" => { texas => '**9', remarks => 'can be combined with ⁰..⁹' },
+  "∅" => { texas => 'set()' },
+  "∈" => { texas => '(elem)' },
+  "∉" => { texas => '!(elem)' },
+  "∋" => { texas => '(cont)' },
+  "∌" => { texas => '!(cont)' },
+  "⊆" => { texas => '(<=)' },
+  "⊈" => { texas => '!(<=)' },
+  "⊂" => { texas => '(<)' },
+  "⊄" => { texas => '!(<)' },
+  "⊇" => { texas => '(>=)' },
+  "⊉" => { texas => '!(>=)' },
+  "⊃" => { texas => '(>)' },
+  "⊅" => { texas => '!(>)' },
+  "≼" => { texas => '(<+)' },
+  "≽" => { texas => '(>+)' },
+  "∪" => { texas => '(|)' },
+  "∩" => { texas => '(&)' },
+  "∖" => { texas => '(-)' },
+  "⊖" => { texas => '(^)' },
+  "⊍" => { texas => '(.)' },
+  "⊎" => { texas => '(+)' } ;
+
+
+
+# VIM: ft=perl6 ts=2
