@@ -1,10 +1,15 @@
 #!/usr/bin/env perl6
 
 use v6.c;
-use GTK::Simple;
+
+# For quotation marks, things are a little more difficult. As perl 6.c, there's no
+# way to introspect the Quote grammar, but since there are plans to make use of
+# Unicode's Pi/Pf and Ps/Pe properties, we can list those instead.
+# See https://design.perl6.org/v6d.html#Formal_Rules_for_Defining_Matched_Delimiters%2FBrackets
+my %unicode-quotes = all-quotes();
 
 
-
+# This list is derived from https://docs.perl6.org/language/unicode_texas#Other_acceptable_single_codepoints
 my %unicode-chars =
   "«" => { texas => '<<',  remarks => 'as part of «» or .«' },
   "»" => { texas => '>>',  remarks => 'as part of «» or .»' },
@@ -18,6 +23,8 @@ my %unicode-chars =
   "𝑒" => { texas => 'e',   remarks => '2.71828_18284_59045_235e0' },
   "∞" => { texas => 'Inf' },
   "…" => { texas => '...' },
+  "⁇" => { texas => '??' },
+  "‼" => { texas => '!!' },
   "‘" => { texas => "'",   remarks => "as part of ‘’ or ‚’ or ’‘" },
   "’" => { texas => "'",   remarks => "as part of ’‘ or ’’" },
   "‚" => { texas => "'",   remarks => "as part of ‚‘ or ‚’" },
@@ -26,9 +33,9 @@ my %unicode-chars =
   '„' => { texas => '"',   remarks => 'as part of „“ or „”' },
   "｢" => { texas => 'Q//', remarks => 'as part of ｢｣' },
   "｣" => { texas => 'Q//', remarks => 'as part of ｢｣' },
-  "⁺" => { texas => '+ (must use explicit number)', remarks =>     'as part of exponentiation' },
-  "⁻" => { texas => '- (must use explicit number)', remarks =>     'as part of exponentiation' },
-  "¯" => { texas => '- (must use explicit number)', remarks =>     'as part of exponentiation (macron is an alternative way of writing a minus)' },
+  "⁺" => { texas => '+ (must use explicit number)', remarks => 'as part of exponentiation' },
+  "⁻" => { texas => '- (must use explicit number)', remarks => 'as part of exponentiation' },
+  "¯" => { texas => '- (must use explicit number)', remarks => 'as part of exponentiation (macron is an alternative way of writing a minus)' },
   "⁰" => { texas => '**0', remarks => 'can be combined with ⁰..⁹' },
   "¹" => { texas => '**1', remarks => 'can be combined with ⁰..⁹' },
   "²" => { texas => '**2', remarks => 'can be combined with ⁰..⁹' },
@@ -62,5 +69,36 @@ my %unicode-chars =
   "⊎" => { texas => '(+)' } ;
 
 
+for $~MAIN.grammar.^methods».name {
 
-# VIM: ft=perl6 ts=2
+  .say;
+    when /^ < pre in post circum> fix .*? ":sym" [ "<" | "«" ] <( .* )> [ ">" | "»" ] $ / {
+        given $/.Str {
+
+            .say;
+        }
+    }
+}
+
+for $~Quote.grammar.^methods».name {
+
+  .say;
+    when /^ < pre in post circum> fix .*? ":sym" [ "<" | "«" ] <( .* )> [ ">" | "»" ] $ / {
+        given $/.Str {
+
+            .say;
+        }
+    }
+}
+
+sub all-quotes () returns Hash {
+  my %quotes;
+  for (0..0x10FFFF).grep: { .uniprop eq "Pi"|"Pf"|"Ps"|"Pe" } -> $ord {
+    my $char = $ord.chr;
+    %quotes<$char> = { property => sprintf "%s", $char.uniprops };
+  }
+  return %quotes;
+}
+
+
+# vim: ft=perl6 ts=2 et
