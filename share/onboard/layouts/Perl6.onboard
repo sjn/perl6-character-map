@@ -13,14 +13,14 @@ GNU General Public License for more details.
 You should have received a copy of the GNU General Public License
 along with this program. If not, see <http://www.gnu.org/licenses/>.
 -->
-<keyboard author="Johannes Almer" description="Keyboard layout with Greek literals, arrows and more, for math and physics education on an interactive Whiteboard." format="3.2" id="Perl 6 essentials" section="contributions" summary="Special characters for interactive whiteboards">
+<keyboard author="Salve J. Nilsen" description="Keyboard layout with math symbols, special quoting and more, for helping with writing idiomatic Perl 6 programs." format="3.2" id="Perl 6 essentials" section="contributions" summary="Special characters for software development with Perl 6">
   <include file="key_defs.xml"/>
-  <key_template button="true" id="layer1" label="⅙⁺₉" tooltip="Sub-, Superscripts; Fractions"/>
+  <!-- key_template button="true" id="layer1" label="⅙⁺₉" tooltip="Sub-, Superscripts; Fractions"/>
   <key_template button="true" id="layer2" image="" label="∃∩" tooltip="Set and Settings"/>
   <key_template button="true" id="layer3" label="⚀♫" tooltip="Special Characters"/>
   <key_template button="true" id="layer0" label="αβΩ" show_active="false" tooltip="Greek"/>
   <key_template button="true" id="layer4" label="⇄" tooltip="Arrows"/>
-  <key_template button="true" id="layer5" label="..." tooltip="Custom"/>
+  <key_template button="true" id="layer5" label="..." tooltip="Custom"/ -->
   <!-- box containing all the keys and buttons -->
   <!-- the rows of keys on the Onboard keyboard are counted bottom to top starting with 1 -->
   <box border="1" orientation="vertical" spacing="2.0">
