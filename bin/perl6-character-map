@@ -69,26 +69,23 @@ my %unicode-chars =
   "⊎" => { texas => '(+)' } ;
 
 
-for $~MAIN.grammar.^methods».name {
 
+for $~MAIN.grammar.^methods».name {
   .say;
-    when /^ < pre in post circum> fix .*? ":sym" [ "<" | "«" ] <( .* )> [ ">" | "»" ] $ / {
-        given $/.Str {
-
-            .say;
-        }
+  when /^ < pre in post circum> fix .*? ":sym" [ "<" | "«" ] <( .* )> [ ">" | "»" ] $ / {
+    given $/.Str {
+      .say;
     }
+  }
 }
 
-for $~Quote.grammar.^methods».name {
-
+for $~Quote.grammar.^methods».name {
   .say;
-    when /^ < pre in post circum> fix .*? ":sym" [ "<" | "«" ] <( .* )> [ ">" | "»" ] $ / {
-        given $/.Str {
-
-            .say;
-        }
+  when /^ < pre in post circum> fix .*? ":sym" [ "<" | "«" ] <( .* )> [ ">" | "»" ] $ / {
+    given $/.Str {
+      .say;
     }
+  }
 }
 
 sub all-quotes () returns Hash {
