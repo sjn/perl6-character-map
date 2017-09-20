@@ -1,7 +1,7 @@
 SOURCE_DIR := share/onboard/layouts
 TARGET_DIR := ${HOME}/.local/${SOURCE_DIR}
 
-SVG_FILES = Perl6-Alpha.svg Perl6-Arrows.svg Perl6-Emoji.svg Perl6-Greek.svg Perl6-Numbers.svg Perl6-Syms.svg
+SVG_FILES = Perl6-Default.svg Perl6-Arrows.svg Perl6-Emoji.svg Perl6-Greek.svg Perl6-Numbers.svg Perl6-Math.svg
 ONBOARD_FILE = Perl6.onboard
 FILES = ${SVG_FILES} ${ONBOARD_FILE}
 
